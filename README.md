@@ -1,5 +1,5 @@
 # NotesApp
-This is a basic note application.
+This is a basic note application for Android.
 
 Features:
 
