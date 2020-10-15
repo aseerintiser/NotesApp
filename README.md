@@ -1,7 +1,7 @@
 # NotesApp
 This is a basic note application.
 Features:
--User login/register
+-User login/register \n
 -Take notes and mark them as checked that is completed
 -Edit notes
 -Uncompleted notes are sorted at the top
