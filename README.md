@@ -5,7 +5,7 @@ Features:
 
 -User login/register
 
--Take notes and mark them as checked that is completed
+-Take notes and mark the completed ones as checked
 
 -Edit notes
 
