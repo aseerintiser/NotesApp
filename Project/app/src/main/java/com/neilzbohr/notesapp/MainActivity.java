@@ -26,7 +26,7 @@ import android.widget.Toast;
 
 import java.io.FileReader;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FirebaseAuth.AuthStateListener {
 
     private static final String TAG = "MainActivity";
     RecyclerView recyclerView;
@@ -49,17 +49,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
-            startLoginActivity();
-        } else {
-            FirebaseAuth.getInstance().getCurrentUser().getIdToken(true)
-                    .addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
-                        @Override
-                        public void onSuccess(GetTokenResult getTokenResult) {
-                            Log.d(TAG, "onSuccess: " + getTokenResult.getToken());
-                        }
-                    });
-        }
     }
 
     private void startLoginActivity() {
@@ -85,17 +74,8 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case R.id.action_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
-                AuthUI.getInstance().signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()) {
-                                    startLoginActivity();
-                                } else {
-                                    Log.e(TAG, "onComplete: ", task.getException());
-                                }
-                            }
-                        });
+                AuthUI.getInstance().signOut(this);
+
                 return true;
             case R.id.action_profile:
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
@@ -103,5 +83,34 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseAuth.getInstance().addAuthStateListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FirebaseAuth.getInstance().addAuthStateListener(this);
+    }
+
+    @Override
+    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        if(firebaseAuth.getCurrentUser() == null) {
+            startLoginActivity();
+            return;
+        }
+
+        firebaseAuth.getCurrentUser().getIdToken(true)
+                .addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+                    @Override
+                    public void onSuccess(GetTokenResult getTokenResult) {
+                        Log.d(TAG, "onSuccess: " + getTokenResult.getToken());
+                    }
+                });
+
     }
 }
