@@ -5,10 +5,12 @@ import android.os.Bundle;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GetTokenResult;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(FirebaseAuth.getInstance().getCurrentUser() == null) {
             startLoginActivity();
+        } else {
+            FirebaseAuth.getInstance().getCurrentUser().getIdToken(true)
+                    .addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+                        @Override
+                        public void onSuccess(GetTokenResult getTokenResult) {
+                            Log.d(TAG, "onSuccess: " + getTokenResult.getToken());
+                        }
+                    });
         }
     }
 
