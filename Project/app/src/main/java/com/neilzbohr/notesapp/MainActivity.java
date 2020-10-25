@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
     }
 
@@ -112,7 +112,12 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
                     }
                 });
 
-        Log.d(TAG, "onAuthStateChanged: " +firebaseAuth.getCurrentUser().getPhoneNumber());
+        Log.d(TAG, "onAuthStateChanged: " + firebaseAuth.getCurrentUser().getPhoneNumber());
 
+    }
+
+    public void onClickfab(View view) {
+        Intent intent = new Intent(this, ExamplesActivity.class);
+        startActivity(intent);
     }
 }

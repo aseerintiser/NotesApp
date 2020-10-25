@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExamplesActivity">
+
+    <Button
+        android:id="@+id/buttonCreateDocument"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:layout_marginBottom="45dp"
+        android:onClick="createDocument"
+        android:text="Create A Document"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/buttonReadDocument"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonReadDocument"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:onClick="readDocument"
+        android:text="Read A Document"
+        app:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCreateDocument" />
+
+    <Button
+        android:id="@+id/buttonUpdateDocument"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:onClick="updateDocument"
+        android:text="Update A Document"
+        app:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonReadDocument" />
+
+    <Button
+        android:id="@+id/buttonDeleteDocument"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:onClick="deleteDocument"
+        android:text="Delete A Document"
+        app:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpdateDocument" />
+
+    <Button
+        android:id="@+id/buttonGetDocs"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:onClick="getAllDocuments"
+        android:text="Get A List of All Documents"
+        app:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDeleteDocument" />
+
+    <Button
+        android:id="@+id/buttonGetDocsRTU"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="136dp"
+        android:onClick="getAllDocumentsWithRealtimeUpdates"
+        android:text="Get List of All Docs with Realtime Updates"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGetDocs" />
+</androidx.constraintlayout.widget.ConstraintLayout>
