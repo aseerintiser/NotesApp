@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
+import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,7 +38,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
     public void handleLoginRegister(View view) {
 
         List<AuthUI.IdpConfig> provider = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build()
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build()
         );
 
         Intent intent = AuthUI.getInstance()
