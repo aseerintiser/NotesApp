@@ -32,24 +32,46 @@ public class ExamplesActivity extends AppCompatActivity {
         //Toast.makeText(this, "createDocument", Toast.LENGTH_SHORT).show();
         //FirebaseFirestore.getInstance();
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("text", "I wanna learn to live");
-        map.put("isCompleted",false);
-        map.put("created", new Timestamp(new Date()));
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("text", "I wanna learn to live");
+//        map.put("isCompleted",false);
+//        map.put("created", new Timestamp(new Date()));
+//
+//        firestore.collection("notes")
+//                .add(map)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Log.d(TAG, "onSuccess: Task was successful");
+//                        Log.d(TAG, "onSuccess: " + documentReference.getId());
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d(TAG, "onFailure: Task was not successful");
+//                    }
+//                });
 
-        firestore.collection("notes")
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "iPhone 11");
+        map.put("price", 699);
+        map.put("isAvailable", true);
+
+        FirebaseFirestore.getInstance()
+                .collection("products")
                 .add(map)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "onSuccess: Task was successful");
+                        Log.d(TAG, "onSuccess: Product is added successfully");
                         Log.d(TAG, "onSuccess: " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onFailure: Task was not successful");
+                        Log.e(TAG, "onFailure: ", e);
                     }
                 });
 
