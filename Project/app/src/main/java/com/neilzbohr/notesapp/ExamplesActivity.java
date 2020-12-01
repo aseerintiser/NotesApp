@@ -162,7 +162,8 @@ public class ExamplesActivity extends AppCompatActivity {
         FirebaseFirestore.getInstance()
                 .collection("products")
                 //.orderBy("price")
-                .orderBy("price", Query.Direction.DESCENDING)
+                //.orderBy("price", Query.Direction.DESCENDING)
+                .limit(2)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
