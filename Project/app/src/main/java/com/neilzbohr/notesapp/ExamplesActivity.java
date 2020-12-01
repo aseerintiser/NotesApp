@@ -156,7 +156,27 @@ public class ExamplesActivity extends AppCompatActivity {
     }
 
     public void getAllDocuments(View view) {
-        Toast.makeText(this, "getAllDocuments", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "getAllDocuments", Toast.LENGTH_SHORT).show();
+
+        FirebaseFirestore.getInstance()
+                .collection("products")
+                .orderBy("price")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot snapshot : snapshotList) {
+                            Log.d(TAG, "onSuccess: " + snapshot.getData());
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure: ", e);
+                    }
+                });
     }
 
     public void getAllDocumentsWithRealtimeUpdates(View view) {
