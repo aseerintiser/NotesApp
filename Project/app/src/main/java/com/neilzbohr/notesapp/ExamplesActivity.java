@@ -12,10 +12,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ExamplesActivity extends AppCompatActivity {
@@ -78,7 +81,26 @@ public class ExamplesActivity extends AppCompatActivity {
     }
 
     public void readDocument(View view) {
-        Toast.makeText(this, "readDocument", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "readDocument", Toast.LENGTH_SHORT).show();
+        FirebaseFirestore.getInstance()
+                .collection("products")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Log.d(TAG, "onSuccess: We're getting the data");
+                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot snapshot : snapshotList) {
+                            Log.d(TAG, "onSuccess: " + snapshot.getData());
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure: ", e);
+                    }
+                });
     }
 
     public void updateDocument(View view) {
