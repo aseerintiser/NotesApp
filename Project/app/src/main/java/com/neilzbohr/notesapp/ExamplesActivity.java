@@ -82,8 +82,31 @@ public class ExamplesActivity extends AppCompatActivity {
 
     public void readDocument(View view) {
         //Toast.makeText(this, "readDocument", Toast.LENGTH_SHORT).show();
+//        FirebaseFirestore.getInstance()
+//                .collection("products")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        Log.d(TAG, "onSuccess: We're getting the data");
+//                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+//                        for(DocumentSnapshot snapshot : snapshotList) {
+//                            Log.d(TAG, "onSuccess: " + snapshot.getData());
+//                        }
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.e(TAG, "onFailure: ", e);
+//                    }
+//                });
+
         FirebaseFirestore.getInstance()
                 .collection("products")
+                //.whereLessThan("price", 500)
+                //.whereEqualTo("isAvailable", false)
+                //.whereEqualTo("price", 499)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
