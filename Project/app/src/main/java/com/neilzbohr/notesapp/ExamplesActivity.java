@@ -102,20 +102,41 @@ public class ExamplesActivity extends AppCompatActivity {
 //                    }
 //                });
 
+//        FirebaseFirestore.getInstance()
+//                .collection("products")
+//                //.whereLessThan("price", 500)
+//                //.whereEqualTo("isAvailable", false)
+//                //.whereEqualTo("price", 499)
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        Log.d(TAG, "onSuccess: We're getting the data");
+//                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+//                        for(DocumentSnapshot snapshot : snapshotList) {
+//                            Log.d(TAG, "onSuccess: " + snapshot.getData());
+//                        }
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.e(TAG, "onFailure: ", e);
+//                    }
+//                });
+
         FirebaseFirestore.getInstance()
                 .collection("products")
-                //.whereLessThan("price", 500)
-                //.whereEqualTo("isAvailable", false)
-                //.whereEqualTo("price", 499)
+                .document("tlIpf6HcJkuzTHaaq4AZ")
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        Log.d(TAG, "onSuccess: We're getting the data");
-                        List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot snapshot : snapshotList) {
-                            Log.d(TAG, "onSuccess: " + snapshot.getData());
-                        }
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Log.d(TAG, "onSuccess: " + documentSnapshot.getId());
+                        Log.d(TAG, "onSuccess: " + documentSnapshot.getData());
+                        Log.d(TAG, "onSuccess: " + documentSnapshot.getString("name"));
+                        Log.d(TAG, "onSuccess: " + documentSnapshot.getBoolean("isAvailable"));
+                        Log.d(TAG, "onSuccess: " + documentSnapshot.getDouble("price"));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
